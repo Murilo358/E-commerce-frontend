@@ -1,27 +1,41 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
-import { FC } from 'react'
 
-const ProductCard : FC = () => {
+
+interface ProductCardProps {
+  className?: string;
+  productName: string;
+  oldPrice?: string;
+  currentPrice: string;
+  imageUrl: string;
+}
+
+const ProductCard : React.FC<ProductCardProps> = ({ className, productName, oldPrice, currentPrice, imageUrl }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-    <CardActionArea>
-      <CardMedia
-        component="img"
-        height="140"
-        image="switch.jpeg"
-        alt="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-  </Card>
+    <Card className={className}  sx={{ maxWidth: 345, textAlign: 'left' }}>
+      <CardActionArea style={{padding: 10}}>
+        <CardMedia 
+          component="img"
+          height="150"
+          image={imageUrl}
+          alt={productName}
+        />
+        <CardContent >
+          <Typography gutterBottom  component="div">
+            {productName}
+          </Typography>
+          <div>
+            {oldPrice && (
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                <s>{oldPrice}</s>
+              </Typography>
+            )}
+            <Typography variant="h6">
+              {"R$" + currentPrice}
+            </Typography>
+          </div>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   )
 }
 
