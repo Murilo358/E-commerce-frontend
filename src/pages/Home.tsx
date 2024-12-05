@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Home.scss"
+import "./Home.css"
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -42,7 +42,7 @@ const Home = () => {
   
     </Swiper>
      </div>
-     <div className='container'>
+     <div className='container mx-auto'>
      <div style={{marginTop: 100}} className="grid-container">
         <ProductCard currentPrice='50,00' oldPrice='25,00' productName='Nintendo switch' imageUrl='switch.jpeg' className="grid-item"/>
         <ProductCard currentPrice='50,00' productName='Nintendo switch' imageUrl='switch.jpeg' className="grid-item"/>

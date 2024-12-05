@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import './Header.scss'
+import './Header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,7 +7,7 @@ import { faSearch, faShoppingCart, faUser } from '@fortawesome/free-solid-svg-ic
 const Header: FC = () => {
   return (
     <header className='background'>
-        <div className="container header">
+        <div className="container mx-auto header">
     <div className="header__logo">
         <a href="/">
           <img src="logo.png" alt="Logo da loja" />

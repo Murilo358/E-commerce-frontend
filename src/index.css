@@ -1,7 +1,10 @@
-@use "sass:map";
+/* @use "sass:map"; */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
+/* 
 $breakpoints: (
   sm: 576px,
   md: 768px,
@@ -51,5 +54,5 @@ $breakpoints: (
 
 body {
   font-family: 'Roboto', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+} */
 
