@@ -13,15 +13,14 @@ import ProductCard from '../components/productCard/ProductCard';
 const Home = () => {
   return (
     <>
-      <div className=' image__slider'>
-     <Swiper className='image__slider'
+    <div className=' image__slider'>
+     <Swiper className='image__slider__swiper swiper-container '
       modules={[Navigation, Pagination, Scrollbar, A11y]}
       spaceBetween={50}
+      draggable={true}
       loop={true}
       slidesPerView={1}
       navigation
-      pagination={{ clickable: true }}
-      scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
     >
       <SwiperSlide>
@@ -43,7 +42,7 @@ const Home = () => {
     </Swiper>
      </div>
      <div className='container mx-auto'>
-     <div style={{marginTop: 100}} className="grid-container">
+     <div style={{marginTop: 100}} className="grid justify-center  lg:grid-cols-6 gap-4 sm:grid-cols-4">
         <ProductCard currentPrice='50,00' oldPrice='25,00' productName='Nintendo switch' imageUrl='switch.jpeg' className="grid-item"/>
         <ProductCard currentPrice='50,00' productName='Nintendo switch' imageUrl='switch.jpeg' className="grid-item"/>
         <ProductCard currentPrice='50,00' oldPrice='25,00' productName='Nintendo switch' imageUrl='switch.jpeg' className="grid-item"/>

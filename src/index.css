@@ -4,55 +4,11 @@
 @import 'tailwindcss/utilities';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-/* 
-$breakpoints: (
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
 
-@function breakpoint($name) {
-  @return map.get($breakpoints, $name); 
+.swiper-slide img {
+  width: 100%; 
+  height: auto;
+  object-fit: cover; 
+  max-width: 100%; 
+  display: block; 
 }
-
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media (min-width: breakpoint(sm)) {
-    max-width: 540px;
-  }
-
-  @media (min-width: breakpoint(md)) {
-    max-width: 720px;
-  }
-
-  @media (min-width: breakpoint(lg)) {
-    max-width: 960px;
-    padding-right: 15px;
-    padding-left: 15px;
-  
-  }
-
-  @media (min-width: breakpoint(xl)) {
-    max-width: 1140px;
-    padding-right: 15px;
-    padding-left: 15px;
-
-  }
-
-  @media (min-width: breakpoint(xxl)) {
-    max-width: 1320px;
-    padding-right: 15px;
-    padding-left: 15px;
-
-  }
-}
-
-body {
-  font-family: 'Roboto', -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-} */
-
