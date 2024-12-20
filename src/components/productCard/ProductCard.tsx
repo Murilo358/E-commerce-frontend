@@ -1,42 +1,54 @@
-import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
-
+import { height } from "@fortawesome/free-solid-svg-icons/fa0";
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 
 interface ProductCardProps {
+  height: number;
   className?: string;
   productName: string;
   oldPrice?: string;
-  currentPrice: string;
+  currentPrice: number;
   imageUrl: string;
 }
 
-const ProductCard : React.FC<ProductCardProps> = ({ className, productName, oldPrice, currentPrice, imageUrl }) => {
+const ProductCard: React.FC<ProductCardProps> = ({
+  className,
+  productName,
+  height,
+  oldPrice,
+  currentPrice,
+  imageUrl,
+}) => {
   return (
-    <Card className={className}  sx={{ maxWidth: 345, textAlign: 'left' }}>
-      <CardActionArea style={{padding: 10}}>
-        <CardMedia 
-          component="img"
-          height="150"
-          image={imageUrl}
-          alt={productName}
-        />
-        <CardContent >
-          <Typography gutterBottom  component="div">
+    <Card className={className} sx={{ textAlign: "left" }}>
+      <CardActionArea style={{ padding: 10, height: height }}>
+        <CardMedia component="img" image={imageUrl} alt={productName} />
+        <CardContent>
+          <Typography
+            variant="h5"
+            gutterBottom
+            className="w-48  overflow-ellipsis break-words line-clamp-2"
+            component="div"
+          >
             {productName}
           </Typography>
           <div>
             {oldPrice && (
-              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+              <Typography variant="subtitle1" sx={{ color: "text.secondary" }}>
                 <s>{oldPrice}</s>
               </Typography>
             )}
-            <Typography variant="h6">
-              {"R$" + currentPrice}
-            </Typography>
+            <Typography variant="h4">{"R$" + currentPrice}</Typography>
           </div>
         </CardContent>
       </CardActionArea>
     </Card>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;

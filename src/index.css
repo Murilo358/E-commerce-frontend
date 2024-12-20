@@ -12,3 +12,27 @@
   max-width: 100%; 
   display: block; 
 }
+
+:root {
+  --playfair-display: "Playfair Display", serif;
+  --plus-jakarta-sans: "Plus Jakarta Sans", sans-serif;
+
+  --background-color: #ebebeb;
+  --primary-color: #b1454a;
+  --secondary-color: #121212;
+
+  --black-200: #020202;
+  --black-300: #333333;
+  --black-400: #1f1e31;
+  --black-500: #555555;
+  --gray-100: #888888;
+
+  --beige: #c9c1b1;
+  --color-white: #fff;
+  --color-creamson: #d1d0cf;
+}
+
+
+body{
+  background-color: var(--background-color);
+}
