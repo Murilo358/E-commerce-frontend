@@ -2,11 +2,11 @@ import "./Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import ProductCard from "../components/productCard/ProductCard";
 import { useFetch } from "../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { Card, Typography } from "@mui/material";
 import ProductsSlider from "../components/productsSlider/ProductsSlider";
+import config from "../config";
 
 type Product = {
   id: string;
@@ -24,7 +24,7 @@ const Home = () => {
   const [data, setData] = useState<Product[] | []>([]);
 
   const { data: fetchedData, error } = useFetch<Product[]>(
-    "http://localhost:8081/products/getAll"
+    config.services.product_service + "products/getAll?sort=createdAt,desc"
   );
 
   useEffect(() => {

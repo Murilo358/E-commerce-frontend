@@ -52,7 +52,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ products }) => {
       >
         {products.length > 0 &&
           products.map((product: Product) => (
-            <SwiperSlide>
+            <SwiperSlide key={product.id}>
               <ProductCard
                 currentPrice={product.price}
                 oldPrice="25,00"
