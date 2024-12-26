@@ -2,11 +2,11 @@ import "./Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { useFetch } from "../hooks/useFetch";
+import { useFetch } from "../../hooks/useFetch";
 import { useEffect, useState } from "react";
 import { Card, Typography } from "@mui/material";
-import ProductsSlider from "../components/productsSlider/ProductsSlider";
-import config from "../config";
+import ProductsSlider from "../../components/productsSlider/ProductsSlider";
+import config from "../../config";
 
 type Product = {
   id: string;

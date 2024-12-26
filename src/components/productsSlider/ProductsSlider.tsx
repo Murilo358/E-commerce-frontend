@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
 import ProductCard from "../productCard/ProductCard";
+import { Link } from "react-router-dom";
 
 type Product = {
   id: string;
@@ -52,16 +53,18 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ products }) => {
       >
         {products.length > 0 &&
           products.map((product: Product) => (
-            <SwiperSlide key={product.id}>
-              <ProductCard
-                currentPrice={product.price}
-                oldPrice="25,00"
-                productName={product.name}
-                imageUrl="switch.jpeg"
-                height={400}
-                className="grid-item"
-              />
-            </SwiperSlide>
+            <Link to={"/Product" + product.id}>
+              <SwiperSlide key={product.id}>
+                <ProductCard
+                  currentPrice={product.price}
+                  oldPrice="25,00"
+                  productName={product.name}
+                  imageUrl="switch.jpeg"
+                  height={400}
+                  className="grid-item"
+                />
+              </SwiperSlide>
+            </Link>
           ))}
       </Swiper>
     </div>
