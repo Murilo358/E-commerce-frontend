@@ -53,8 +53,8 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ products }) => {
       >
         {products.length > 0 &&
           products.map((product: Product) => (
-            <Link to={"/Product" + product.id}>
-              <SwiperSlide key={product.id}>
+            <SwiperSlide key={product.id}>
+              <Link to={"/Product/" + product.id}>
                 <ProductCard
                   currentPrice={product.price}
                   oldPrice="25,00"
@@ -63,8 +63,8 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ products }) => {
                   height={400}
                   className="grid-item"
                 />
-              </SwiperSlide>
-            </Link>
+              </Link>
+            </SwiperSlide>
           ))}
       </Swiper>
     </div>
