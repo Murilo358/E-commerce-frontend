@@ -19,44 +19,42 @@ type Product = {
   updatedAt: string;
 };
 
-type Categories = {
-  "categories.electronics.name": Product[];
-  "categories.games.name": Product[];
-  "categories.clothes.name": Product[];
-  "categories.books.name": Product[];
-  "categories.furniture.name": Product[];
-};
+type Categories = Record<string, Product[]>;
 
-type Teste = {
+type HomePageProducts = {
   products: Categories;
 };
 
 const Home = () => {
-  const [newestsProducts, setNewestsProducts] = useState<Product[] | []>([]);
-  const [groupedBy, setGroupedBy] = useState<Teste | null>(null);
+  const [state, setState] = useState<{
+    newestsProducts: Product[];
+    groupedBy: HomePageProducts | null;
+    error: string | null;
+  }>({
+    newestsProducts: [],
+    groupedBy: null,
+    error: null,
+  });
 
-  const { data: fetchedNewestsProducts, error } = useFetch<Product[]>(
-    config.services.product_service + "products/getAll?sort=createdAt,desc"
-  );
+  const { data: fetchedNewestsProducts, error: newestsError } = useFetch<
+    Product[]
+  >(`${config.services.product_service}products/getAll?sort=createdAt,desc`);
 
-  const { data: fetchedGroupedBy, error: groupedByError } = useFetch<Teste>(
-    config.services.product_service + "products/homepage?sort=createdAt,desc"
-  );
+  const { data: fetchedGroupedBy, error: groupedByError } =
+    useFetch<HomePageProducts>(
+      `${config.services.product_service}products/homepage?sort=createdAt,desc`
+    );
 
   useEffect(() => {
-    if (fetchedGroupedBy) {
-      setGroupedBy(fetchedGroupedBy);
-    }
-  }, [fetchedGroupedBy]);
+    setState({
+      newestsProducts: fetchedNewestsProducts || [],
+      groupedBy: fetchedGroupedBy || null,
+      error: newestsError || groupedByError || null,
+    });
+  }, [fetchedNewestsProducts, fetchedGroupedBy, newestsError, groupedByError]);
 
-  useEffect(() => {
-    if (fetchedNewestsProducts) {
-      setNewestsProducts(fetchedNewestsProducts);
-    }
-  }, [fetchedNewestsProducts]);
-
-  if (error || groupedByError) {
-    return <div>Erro: {error || groupedByError}</div>;
+  if (state.error) {
+    return <div>Erro: {state.error}</div>;
   }
 
   return (
@@ -91,19 +89,20 @@ const Home = () => {
       <div className="container mx-auto pt-10 pb-10 flex flex-col gap-16">
         <Card className="rounded-sm flex flex-col p-5 gap-4">
           <Typography variant="h5">Novos produtos</Typography>
-          <ProductsSlider products={newestsProducts} />
+          <ProductsSlider products={state.newestsProducts} />
         </Card>
 
-        {groupedBy && (
+        {state.groupedBy && (
           <>
-            {Object.keys(groupedBy.products).map((key) => (
-              <Card key={key} className="rounded-sm flex flex-col p-5 gap-4">
-                <Typography variant="h5">{key}</Typography>{" "}
-                <ProductsSlider
-                  products={groupedBy.products[key as keyof Categories] || []}
-                />
-              </Card>
-            ))}
+            {Object.keys(state.groupedBy.products).map((key) =>
+              state.groupedBy != null &&
+              state.groupedBy.products[key]?.length ? (
+                <Card key={key} className="rounded-sm flex flex-col p-5 gap-4">
+                  <Typography variant="h5">{key}</Typography>
+                  <ProductsSlider products={state.groupedBy.products[key]} />
+                </Card>
+              ) : null
+            )}
           </>
         )}
       </div>
