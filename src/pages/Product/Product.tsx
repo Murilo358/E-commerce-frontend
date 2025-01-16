@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import config from "../../config";
 import {
+  Card,
   FormControl,
   InputLabel,
   MenuItem,
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import ImageZoom from "react-image-zooom";
 import { useState } from "react";
+import ProductsSlider from "../../components/productsSlider/ProductsSlider";
 
 const Product = () => {
   const [quantity, setQuantity] = useState("1");
@@ -27,6 +29,18 @@ const Product = () => {
     newSalesLastMonth: number;
   };
 
+  type ProductView = {
+    id: string;
+    name: string;
+    description: string;
+    categoryId: string;
+    createdAt: string;
+    inventoryCount: number;
+    price: number;
+    sellerId: number;
+    updatedAt: string;
+  };
+
   type ProductType = {
     id: string;
     name: string;
@@ -37,6 +51,7 @@ const Product = () => {
     price: number;
     seller: Seller;
     updatedAt: string;
+    relatedProducts: ProductView[];
   };
 
   const { id } = useParams();
@@ -129,10 +144,23 @@ const Product = () => {
                   <Typography variant="h6">
                     + {product?.seller?.newSalesLastMonth} vendas no último mês
                   </Typography>
+                  <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
+                    Acesse a página do vendedor
+                  </button>
                 </div>
               </div>
             </div>
             <div>{product.description}</div>
+            {product.relatedProducts != null &&
+              product.relatedProducts.length > 0 && (
+                <Card
+                  key={product.id}
+                  className="rounded-sm flex flex-col p-5 gap-4"
+                >
+                  <Typography variant="h5">Produtos relacionados </Typography>
+                  <ProductsSlider products={product.relatedProducts} />
+                </Card>
+              )}
           </>
         )}
       </div>
