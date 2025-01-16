@@ -100,8 +100,8 @@ const Product = () => {
               </div>
               <div className="w-2/5 flex flex-col gap-7">
                 <div className="flex flex-col  border border-gray-300 p-5 rounded-md gap-4">
-                  <Typography variant="h3">{product.name}</Typography>
-                  <Typography variant="h4">R${product.price}</Typography>
+                  <Typography variant="h4">{product.name}</Typography>
+                  <Typography variant="h5">R${product.price}</Typography>
                   <FormControl fullWidth>
                     <InputLabel id="quantity-select-label">
                       Quantidade
@@ -126,22 +126,25 @@ const Product = () => {
                       )}
                     </Select>
                   </FormControl>
-                  <Typography variant="h6">
-                    {product.inventoryCount} Disponiveis
+                  <Typography variant="subtitle1">
+                    {product.inventoryCount} Restantes
                   </Typography>
-                  <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
+                  <button className="bg-blue-500 w-full  hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
                     Comprar agora
+                  </button>
+                  <button className="bg-blue-300 -500 w-full hover:bg-blue-300 text-blue-700 font-bold py-4 px-4 rounded">
+                    Adicionar ao carrinho
                   </button>
                 </div>
                 <div className="flex flex-col  border border-gray-300 p-5 rounded-md gap-4">
                   <Typography variant="h5">
                     Vendido por {product?.seller?.name}
                   </Typography>
-                  <Typography variant="h6">
+                  <Typography variant="subtitle1">
                     + {product?.seller?.newProductsLastMonth} Novos produtos no
                     último mês
                   </Typography>
-                  <Typography variant="h6">
+                  <Typography variant="subtitle1">
                     + {product?.seller?.newSalesLastMonth} vendas no último mês
                   </Typography>
                   <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
@@ -150,7 +153,7 @@ const Product = () => {
                 </div>
               </div>
             </div>
-            <div>{product.description}</div>
+            <div className="min-h-96"> {product.description}</div>
             {product.relatedProducts != null &&
               product.relatedProducts.length > 0 && (
                 <Card
