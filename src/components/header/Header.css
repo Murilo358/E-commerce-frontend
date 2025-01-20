@@ -4,14 +4,14 @@
     align-items: center;
     flex-wrap: wrap;
     padding: 20px 0px;
-    background-color: #464646;
+    background-color: rgb(82 82 82 / var(--tw-bg-opacity, 1));
     color: white !important;
     width: 100%;
     gap: 10px; 
   }
   
   .background{
-    background-color: #464646;
+    background-color: rgb(82 82 82 / var(--tw-bg-opacity, 1))
   }
 
   .header__logo img {
