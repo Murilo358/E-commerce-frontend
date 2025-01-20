@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import React from "react";
 import Product from "./pages/Product/Product";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="*" element={"Not found"} />
           </Routes>
         </BrowserRouter>
+        <Footer />
       </React.StrictMode>
     </>
   );
