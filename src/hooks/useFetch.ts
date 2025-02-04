@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 
-export const useFetch = <T>(url: string) => {
-  const [data, setData] = useState<T | null>(null); 
+interface FetchOptions {
+  method?: string;
+  headers?: Record<string, string>;
+  body?: BodyInit | null;
+}
+
+export const useFetch = <T>(url: string, options?: FetchOptions) => {
+  const [data, setData] = useState<T | null>(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -9,7 +15,7 @@ export const useFetch = <T>(url: string) => {
     const fetchData = async () => {
       setIsPending(true);
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, options);
         if (!response.ok) throw new Error(response.statusText);
 
         const json: T = await response.json();
@@ -27,7 +33,7 @@ export const useFetch = <T>(url: string) => {
     };
 
     fetchData();
-  }, [url]);
+  }, [url, options]);
 
   return { data, isPending, error };
 };

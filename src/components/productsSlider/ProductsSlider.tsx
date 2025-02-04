@@ -59,7 +59,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ products }) => {
                   currentPrice={product.price}
                   oldPrice="25,00"
                   productName={product.name}
-                  imageUrl="switch.jpeg"
+                  imageUrl="public/switch.jpeg"
                   height={400}
                   className="grid-item"
                 />

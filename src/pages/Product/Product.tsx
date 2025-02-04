@@ -76,6 +76,21 @@ const Product = () => {
     setQuantity(event.target.value as string);
   };
 
+  const createOrder = async (productId: string) => {
+    //todo change to the realPayment method and buyerId
+    await fetch(`${config.services.order_service}order/create`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        products: [productId],
+        paymentMethod: 1,
+        buyerId: 1,
+      }),
+    });
+  };
+
   return (
     <>
       <div className="container mt-5 mx-auto p-20 bg-white  ">
@@ -129,7 +144,12 @@ const Product = () => {
                   <Typography variant="subtitle1">
                     {product.inventoryCount} Restantes
                   </Typography>
-                  <button className="bg-blue-500 w-full  hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
+                  <button
+                    onClick={() => {
+                      createOrder(product.id);
+                    }}
+                    className="bg-blue-500 w-full  hover:bg-blue-700 text-white font-bold py-4 px-4 rounded"
+                  >
                     Comprar agora
                   </button>
                   <button className="bg-blue-300 -500 w-full hover:bg-blue-300 text-blue-700 font-bold py-4 px-4 rounded">
