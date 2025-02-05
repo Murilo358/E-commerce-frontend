@@ -3,8 +3,9 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import React from "react";
-import Product from "./pages/Product/Product";
+import Product from "./pages/product/Product";
 import Footer from "./components/footer/Footer";
+import Seller from "./pages/seller/Seller";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/seller/:id" element={<Seller />} />
             <Route path="*" element={"Not found"} />
           </Routes>
         </BrowserRouter>

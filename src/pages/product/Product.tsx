@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import config from "../../config";
 import {
@@ -24,6 +24,7 @@ const Product = () => {
   };
 
   type Seller = {
+    id: string;
     name: string;
     newProductsLastMonth: number;
     newSalesLastMonth: number;
@@ -167,9 +168,11 @@ const Product = () => {
                   <Typography variant="subtitle1">
                     + {product?.seller?.newSalesLastMonth} vendas no último mês
                   </Typography>
-                  <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
-                    Acesse a página do vendedor
-                  </button>
+                  <Link to={"/seller/" + product?.seller?.id}>
+                    <button className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
+                      Acesse a página do vendedor
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
