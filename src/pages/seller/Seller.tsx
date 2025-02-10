@@ -2,48 +2,12 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import config from "../../config";
+import { ProductDto } from "../../types/ProductDto";
 
 const Seller = () => {
   const { id } = useParams();
 
-  type Category = {
-    id: string;
-    name: string;
-    description: string;
-  };
-
-  type Seller = {
-    name: string;
-    newProductsLastMonth: number;
-    newSalesLastMonth: number;
-  };
-
-  type ProductView = {
-    id: string;
-    name: string;
-    description: string;
-    categoryId: string;
-    createdAt: string;
-    inventoryCount: number;
-    price: number;
-    sellerId: number;
-    updatedAt: string;
-  };
-
-  type ProductType = {
-    id: string;
-    name: string;
-    description: string;
-    category: Category;
-    createdAt: string;
-    inventoryCount: number;
-    price: number;
-    seller: Seller;
-    updatedAt: string;
-    relatedProducts: ProductView[];
-  };
-
-  type map = Map<string, ProductType[]>;
+  type map = Map<string, ProductDto[]>;
 
   const {
     data: product,

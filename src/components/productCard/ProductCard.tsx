@@ -16,14 +16,19 @@ interface ProductCardProps {
   imageUrl: string;
 }
 
+interface ProductCardProps {
+  variant?: "small" | "large";
+}
+
 const ProductCard: React.FC<ProductCardProps> = ({
   className,
+  variant = "primary",
   productName,
   height,
   oldPrice,
   currentPrice,
   imageUrl,
-}) => {
+}: ProductCardProps) => {
   return (
     <Card className={className} sx={{ textAlign: "left" }}>
       <CardActionArea style={{ padding: 10, height: height }}>

@@ -13,47 +13,10 @@ import {
 import ImageZoom from "react-image-zooom";
 import { useState } from "react";
 import ProductsSlider from "../../components/productsSlider/ProductsSlider";
+import { ProductDto } from "../../types/ProductDto";
 
 const Product = () => {
   const [quantity, setQuantity] = useState("1");
-
-  type Category = {
-    id: string;
-    name: string;
-    description: string;
-  };
-
-  type Seller = {
-    id: string;
-    name: string;
-    newProductsLastMonth: number;
-    newSalesLastMonth: number;
-  };
-
-  type ProductView = {
-    id: string;
-    name: string;
-    description: string;
-    categoryId: string;
-    createdAt: string;
-    inventoryCount: number;
-    price: number;
-    sellerId: number;
-    updatedAt: string;
-  };
-
-  type ProductType = {
-    id: string;
-    name: string;
-    description: string;
-    category: Category;
-    createdAt: string;
-    inventoryCount: number;
-    price: number;
-    seller: Seller;
-    updatedAt: string;
-    relatedProducts: ProductView[];
-  };
 
   const { id } = useParams();
 
@@ -61,7 +24,7 @@ const Product = () => {
     data: product,
     isPending,
     error,
-  } = useFetch<ProductType>(
+  } = useFetch<ProductDto>(
     `${config.services.product_service}products/get/${id}`
   );
 

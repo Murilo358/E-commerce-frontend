@@ -6,20 +6,9 @@ import { useEffect, useState } from "react";
 import { Card, Typography } from "@mui/material";
 import ProductsSlider from "../../components/productsSlider/ProductsSlider";
 import config from "../../config";
+import { ProductView } from "../../types/ProductView";
 
-type Product = {
-  id: string;
-  name: string;
-  description: string;
-  categoryId: string;
-  createdAt: string;
-  inventoryCount: number;
-  price: number;
-  sellerId: number;
-  updatedAt: string;
-};
-
-type Categories = Record<string, Product[]>;
+type Categories = Record<string, ProductView[]>;
 
 type HomePageProducts = {
   products: Categories;
@@ -27,7 +16,7 @@ type HomePageProducts = {
 
 const Home = () => {
   const [state, setState] = useState<{
-    newestsProducts: Product[];
+    newestsProducts: ProductView[];
     groupedBy: HomePageProducts | null;
     error: string | null;
   }>({
@@ -37,7 +26,7 @@ const Home = () => {
   });
 
   const { data: fetchedNewestsProducts, error: newestsError } = useFetch<
-    Product[]
+    ProductView[]
   >(`${config.services.product_service}products/getAll?sort=createdAt,desc`);
 
   const { data: fetchedGroupedBy, error: groupedByError } =
