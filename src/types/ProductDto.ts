@@ -1,6 +1,6 @@
 import { CategoryDto } from "./CategoryDto";
 import { ProductView } from "./ProductView";
-import { SellerDto } from "./SellerDto";
+import { SellerSimpleDto } from "./SellerSimpleDto";
 
 export interface ProductDto  {
     id: string;
@@ -10,7 +10,7 @@ export interface ProductDto  {
     createdAt: string;
     inventoryCount: number;
     price: number;
-    seller: SellerDto;
+    seller: SellerSimpleDto;
     updatedAt: string;
     relatedProducts: ProductView[];
   };

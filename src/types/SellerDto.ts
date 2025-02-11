@@ -1,6 +1,7 @@
+import { ProductDto } from "./ProductDto";
+import { ProductView } from "./ProductView";
+
 export interface SellerDto  {
-    id: string;
-    name: string;
-    newProductsLastMonth: number;
-    newSalesLastMonth: number;
+    sellerName: string;
+    sellersProducts:  Record<string, ProductView[]>;
   };
