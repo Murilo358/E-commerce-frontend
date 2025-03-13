@@ -31,11 +31,29 @@ const Seller = () => {
   return (
     <div className=" flex flex-col items-center justify-center  p-10 ">
       <div className=" container gap-5">
-        {seller?.sellerName && (
-          <div>
-            <Typography variant="h2">{seller.sellerName}</Typography>
+        <div className="bg-gray-100 p-5 rounded overflow-hidden shadow-lg mb-5">
+          <div className="items-center flex justify-center ">
+            <img
+              className="h-[300px] w-100"
+              src="/sellers_background.svg"
+              alt=" dasdasdas"
+            />
           </div>
-        )}
+          <div className="flex items-center gap-3 mb-2">
+            <img
+              className="rounded-full"
+              src="/profile.jpg"
+              width={150}
+              height={150}
+              alt="Logo do vendedor"
+            />
+            {seller?.sellerName && (
+              <div>
+                <Typography variant="h2">{seller.sellerName}</Typography>
+              </div>
+            )}
+          </div>
+        </div>
 
         {seller?.sellersProducts && (
           <>
