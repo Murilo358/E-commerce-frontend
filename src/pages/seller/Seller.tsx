@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import config from "../../config";
 import { SellerDto } from "../../types/SellerDto";
-import { Typography } from "@mui/material";
+import { Pagination, Typography } from "@mui/material";
 import ProductCard from "../../components/productCard/ProductCard";
 
 const Seller = () => {
   const { id } = useParams();
+  const [page, setPage] = useState(0);
+
+  const fetchOptions = useMemo(() => ({}), []);
 
   const {
     data: seller,
     isPending,
     error,
   } = useFetch<SellerDto>(
-    `${config.services.product_service}products/getBySellerId/${id}`
+    `${config.services.product_service}products/getBySellerId/${id}?page=${page}`,
+    fetchOptions,
+    [page, id]
   );
 
   if (isPending) {
@@ -25,9 +30,12 @@ const Seller = () => {
     return <div>Erro: {error}</div>;
   }
 
-  console.log(seller);
+  const handlePaginationChange = (event: any, newPage: number) => {
+    setPage(newPage - 1);
+  };
+
   return (
-    <div className=" flex flex-col items-center justify-center  p-10 ">
+    <div className=" flex flex-col items-center justify-center gap-5 p-10 ">
       <div className="container gap-5">
         <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  bg-gray-100 p-5 rounded overflow-hidden shadow-lg mb-5">
           <div className="items-center flex justify-center border-b-2 border-gray-400">
@@ -68,15 +76,16 @@ const Seller = () => {
                       className="grid-item"
                     />
                   ))
-                : // <Card key={key} className="rounded-sm flex flex-col p-5 gap-4">
-                  //   <Typography variant="h5">{key}</Typography>
-                  //   <ProductsSlider products={seller.sellersProducts[key]} />
-                  // </Card>
-                  null
+                : null
             )}
           </div>
         )}
       </div>
+      <Pagination
+        onChange={handlePaginationChange}
+        count={10}
+        variant="outlined"
+      />
     </div>
   );
 };
