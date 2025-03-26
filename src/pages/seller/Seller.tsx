@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import config from "../../config";
@@ -10,42 +10,46 @@ const Seller = () => {
   const { id } = useParams();
   const [page, setPage] = useState(0);
 
-  const fetchOptions = useMemo(() => ({}), []);
-
   const {
     data: seller,
     isPending,
     error,
   } = useFetch<SellerDto>(
     `${config.services.product_service}products/getBySellerId/${id}?page=${page}`,
-    fetchOptions,
+    {},
     [page, id]
   );
 
-  if (isPending) {
-    return <div>Carregando...</div>;
-  }
+  if (isPending) return <div>Carregando...</div>;
 
   if (error) {
-    return <div>Erro: {error}</div>;
+    return (
+      <div className="text-red-500 text-lg font-bold">
+        Ocorreu um erro ao carregar os produtos. Tente novamente mais tarde.
+      </div>
+    );
   }
 
-  const handlePaginationChange = (event: any, newPage: number) => {
+  const handlePaginationChange = (
+    _: React.ChangeEvent<unknown>,
+    newPage: number
+  ) => {
     setPage(newPage - 1);
   };
 
   return (
-    <div className=" flex flex-col items-center justify-center gap-5 p-10 ">
+    <div className="flex flex-col items-center justify-center gap-5 p-10">
       <div className="container gap-5">
-        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  bg-gray-100 p-5 rounded overflow-hidden shadow-lg mb-5">
-          <div className="items-center flex justify-center border-b-2 border-gray-400">
+        {/* Card do Vendedor */}
+        <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-5 rounded shadow-lg mb-5">
+          <div className="flex justify-center border-b-2 border-gray-400">
             <img
               className="h-[300px] w-100"
               src="/sellers_background.svg"
-              alt=" dasdasdas"
+              alt="Banner do Vendedor"
             />
           </div>
-          <div className=" flex items-center gap-3 pt-3 mb-2">
+          <div className="flex items-center gap-3 pt-3 mb-2">
             <img
               className="rounded-full"
               src="/profile.jpg"
@@ -54,33 +58,33 @@ const Seller = () => {
               alt="Logo do vendedor"
             />
             {seller?.sellerName && (
-              <div className="text-white">
-                <Typography variant="h2">{seller.sellerName}</Typography>
-              </div>
+              <Typography variant="h2" color="white">
+                {seller.sellerName}
+              </Typography>
             )}
           </div>
         </div>
 
+        {/* Lista de Produtos */}
         {seller?.sellersProducts && (
-          <div className="grid grid-cols-5 gap-7">
-            {Object.keys(seller?.sellersProducts).map((key) =>
-              seller?.sellersProducts[key]?.length
-                ? seller.sellersProducts[key].map((value) => (
-                    <ProductCard
-                      currentPrice={value.price}
-                      id={value.id}
-                      oldPrice="25,00"
-                      productName={value.name}
-                      imageUrl="/switch.jpeg"
-                      height={400}
-                      className="grid-item"
-                    />
-                  ))
-                : null
-            )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7">
+            {Object.values(seller.sellersProducts)
+              .flat()
+              .map((product) => (
+                <ProductCard
+                  key={product.id}
+                  currentPrice={product.price}
+                  id={product.id}
+                  oldPrice="25,00"
+                  productName={product.name}
+                  imageUrl="/switch.jpeg"
+                  height={400}
+                />
+              ))}
           </div>
         )}
       </div>
+
       <Pagination
         onChange={handlePaginationChange}
         count={10}
