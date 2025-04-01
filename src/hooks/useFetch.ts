@@ -6,7 +6,7 @@ interface FetchOptions {
   body?: BodyInit | null;
 }
 
-export const useFetch = <T>(url: string, options?: FetchOptions, dependencies:  unknown[] = []) => {
+export const useFetch = <T>(url: string, options?: FetchOptions) => {
   const [data, setData] = useState<T | null>(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +33,7 @@ export const useFetch = <T>(url: string, options?: FetchOptions, dependencies:  
     };
 
     fetchData();
-  }, [url, options, ...dependencies]);
+  }, [url, options]);
 
   return { data, isPending, error };
 };
