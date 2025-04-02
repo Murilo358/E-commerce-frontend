@@ -36,6 +36,7 @@ const Product = () => {
     return <div>Erro: {error}</div>;
   }
 
+
   const handleChange = (event: SelectChangeEvent) => {
     setQuantity(event.target.value as string);
   };
@@ -57,11 +58,11 @@ const Product = () => {
 
   return (
     <>
-      <div className="container mt-5 mx-auto p-20 bg-white  ">
+      <div className="container mt-5 mx-auto p-10 bg-white  ">
         {product != null && (
           <>
             <div className="flex">
-              <div className="w-3/5 p-4">
+              <div className="w-4/5 p-4">
                 <ImageZoom
                   width="1000rem"
                   height="auto"
@@ -71,10 +72,11 @@ const Product = () => {
                 />
                 <div className="relative flex py-5 items-center">
                   <div className="flex-grow border-t border-gray-400"></div>
-                  <span className="flex-shrink mx-4 text-gray-400">
+                </div>
+                <div className="text-center">
+                  <h1 className="mb-4 text-3xl font-semibold leading-none tracking-tight text-gray-900  ">
                     Descrição
-                  </span>
-                  <div className="flex-grow border-t border-gray-400"></div>
+                  </h1>
                 </div>
               </div>
               <div className="w-2/5 flex flex-col gap-7">

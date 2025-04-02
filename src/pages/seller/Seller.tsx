@@ -15,9 +15,7 @@ const Seller = () => {
     isPending,
     error,
   } = useFetch<SellerDto>(
-    `${config.services.product_service}products/getBySellerId/${id}?page=${page}`,
-    {},
-    [page, id]
+    `${config.services.product_service}products/getBySellerId/${id}?page=${page}`
   );
 
   if (isPending) return <div>Carregando...</div>;
@@ -29,6 +27,7 @@ const Seller = () => {
       </div>
     );
   }
+
 
   const handlePaginationChange = (
     _: React.ChangeEvent<unknown>,
@@ -86,6 +85,7 @@ const Seller = () => {
       </div>
 
       <Pagination
+        page={page + 1}
         onChange={handlePaginationChange}
         count={10}
         variant="outlined"

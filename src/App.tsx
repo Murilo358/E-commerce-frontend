@@ -6,6 +6,7 @@ import React from "react";
 import Product from "./pages/product/Product";
 import Footer from "./components/footer/Footer";
 import Seller from "./pages/seller/Seller";
+import PreOrder from "./pages/pre-order/PreOrder";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/seller/:id" element={<Seller />} />
+            <Route path="/checkout" element={<PreOrder />} />
             <Route path="*" element={"Not found"} />
           </Routes>
         </BrowserRouter>
