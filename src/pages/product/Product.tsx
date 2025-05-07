@@ -49,7 +49,7 @@ const Product = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        products: [productId],
+        products: [{productId: productId, quantity: 1 }],
         paymentMethod: 1,
         buyerId: 1,
       }),
@@ -77,6 +77,8 @@ const Product = () => {
                   <h1 className="mb-4 text-3xl font-semibold leading-none tracking-tight text-gray-900  ">
                     Descrição
                   </h1>
+                  <div className="min-h-96 text-left"> {product.description}</div>
+
                 </div>
               </div>
               <div className="w-2/5 flex flex-col gap-7">
@@ -141,7 +143,7 @@ const Product = () => {
                 </div>
               </div>
             </div>
-            <div className="min-h-96"> {product.description}</div>
+        
             {product.relatedProducts != null &&
               product.relatedProducts.length > 0 && (
                 <Card

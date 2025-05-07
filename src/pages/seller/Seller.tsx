@@ -56,18 +56,18 @@ const Seller = () => {
               height={150}
               alt="Logo do vendedor"
             />
-            {seller?.sellerName && (
+            {seller?.content?.sellerName && (
               <Typography variant="h2" color="white">
-                {seller.sellerName}
+                {seller?.content.sellerName}
               </Typography>
             )}
           </div>
         </div>
 
         {/* Lista de Produtos */}
-        {seller?.sellersProducts && (
+        {seller?.content?.sellersProducts && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-7">
-            {Object.values(seller.sellersProducts)
+            {Object.values(seller?.content.sellersProducts)
               .flat()
               .map((product) => (
                 <ProductCard
