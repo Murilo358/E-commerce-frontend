@@ -1,4 +1,3 @@
-import { ProductDto } from "./ProductDto";
 import { ProductView } from "./ProductView";
 
 export interface SellerDto  {
@@ -8,5 +7,5 @@ export interface SellerDto  {
     },
     pageNumber: number,
     pageSize: number,
-
-  };
+    totalPages: number,
+  }

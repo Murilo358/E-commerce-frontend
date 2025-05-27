@@ -28,7 +28,6 @@ const Seller = () => {
     );
   }
 
-
   const handlePaginationChange = (
     _: React.ChangeEvent<unknown>,
     newPage: number
@@ -87,7 +86,7 @@ const Seller = () => {
       <Pagination
         page={page + 1}
         onChange={handlePaginationChange}
-        count={10}
+        count={seller?.totalPages}
         variant="outlined"
       />
     </div>
